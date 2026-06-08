@@ -74,16 +74,24 @@ data "aws_ami" "ubuntu" {
 # EC2 Web Abidjan (t2.micro = Free Tier)
 resource "aws_instance" "web_abj" {
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = "t2.micro"
+  instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public_a.id
   vpc_security_group_ids = [aws_security_group.web.id]
   tags = { Name = "web-abidjan" }
 }
 
 # RDS MySQL (db.t3.micro = Free Tier)
+resource "aws_subnet" "public_b" {
+  vpc_id                  = aws_vpc.vpc_abj.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = "eu-west-1b"
+  map_public_ip_on_launch = true
+  tags = { Name = "subnet-public-abj-b" }
+}
+
 resource "aws_db_subnet_group" "db_subnet" {
   name       = "db-subnet-abj"
-  subnet_ids = [aws_subnet.public_a.id]
+  subnet_ids = [aws_subnet.public_a.id, aws_subnet.public_b.id]
 }
 
 resource "aws_db_instance" "mysql_abj" {
