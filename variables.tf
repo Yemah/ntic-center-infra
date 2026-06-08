@@ -6,5 +6,5 @@ variable "aws_region"     { default = "eu-west-1" }
 variable "aws_access_key" {}
 variable "aws_secret_key" { sensitive = true }
 
-variable "azure_location" { default = "westeurope" }
+variable "azure_location" { default = "northeurope" }
 variable "db_password"    { sensitive = true }
