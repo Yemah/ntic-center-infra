@@ -1,5 +1,5 @@
-variable "vsphere_server"   { default = "192.168.1.51" }
-variable "vsphere_user"     { default = "administrator@vsphere.local" }
+variable "vsphere_server" { default = "192.168.1.51" }
+variable "vsphere_user"   { default = "administrator@vsphere.local" }
 variable "vsphere_password" { sensitive = true }
 
 variable "aws_region"     { default = "eu-west-1" }
