@@ -37,7 +37,7 @@ resource "aws_route_table_association" "rta" {
 
 # Security Group Web
 resource "aws_security_group" "web" {
-  name   = "sg-web-abidjan"
+  name   = "web-abidjan-sg"
   vpc_id = aws_vpc.vpc_abj.id
 
   ingress {
@@ -58,7 +58,7 @@ resource "aws_security_group" "web" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = { Name = "sg-web-abidjan" }
+  tags = { Name = "web-abidjan-sg" }
 }
 
 # AMI Ubuntu 22.04

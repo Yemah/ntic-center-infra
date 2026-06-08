@@ -48,7 +48,7 @@ resource "azurerm_linux_virtual_machine" "zabbix" {
 
   admin_ssh_key {
     username   = "ansible"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHUlZbld2mBBToa/1JU96nB+WLgCrch4FmV2/pcbUZHBt12v9OYIpf2vmEe5htcIOPk6e4/NJrI/D/BCuqnJavkX5f02ANppMWRWNMMJpEkn70VvVECS3ajDTskNTlpK1HEdNcrWnD6M44dhrG/vOuLuk/kg3pa1Mj0E5f2bBpL7SaNqrdYBkiLg+fCzKTU0vKal/lk0WbKPPpdf3Q8q/7EeOUUFE0/FBc4ZLKXcJfRsHcf9LbEYg2LIeeZ7LkZuSlSz1hTB6p2k34uomi7Ck1xoPq9A59JX+Ti50l+LLTmLJwFBrRX/pT9UgEBjexCBQyO5HoXV89dEz1i4+2NJLdNAn54qfexowUr97v7MfPOM5IGFC1FOaOK2Zasxyu0Lm3tuIqKwBfvvu56lCeiXOyZtEAKzO0Vm28dkUbghVuNJLdjWbi2fVpDzJpaRsSbRsDz5v/EbHgBXvPrAeQwCBbhIINnneLGEB1NU8e1sp5+e6CH26pM/f/eQGvWcsyVPDdETEYwGxulcLOpdYepGkMEQt7r2S58mA9bKHR1QZFIGBKhIukgBTLPEKpcIrsKir8zIInbid1bidfmnljK7nfWlv+JpyjlpOGm1mbpq4+h+b7Rs+M1j0lIduXDb+rt/NcALJq0ReVYEVRWkQLBH36rhwm9kiJ/5+Bc8oygkZP9Q== ntic-center-lab"
   }
 
   os_disk {
