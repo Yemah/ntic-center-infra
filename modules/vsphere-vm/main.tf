@@ -44,32 +44,12 @@ resource "vsphere_virtual_machine" "web_paris" {
 
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
-
-    customize {
-      linux_options {
-        host_name = "web-paris"
-        domain    = "ntic-paris.local"
-      }
-      network_interface {
-        ipv4_address = "192.168.1.60"
-        ipv4_netmask = 24
-      }
-      ipv4_gateway    = "192.168.1.254"
-      dns_server_list = ["192.168.1.100"]
-    }
   }
 
   extra_config = {
     "guestinfo.metadata" = base64encode(jsonencode({
-      network = {
-        version = 2
-        ethernets = {
-          eth0 = {
-            addresses = ["192.168.1.60/24"]
-            gateway4  = "192.168.1.254"
-          }
-        }
-      }
+      "instance-id"    = "web-paris"
+      "local-hostname" = "web-paris"
     }))
     "guestinfo.metadata.encoding" = "base64"
     "guestinfo.userdata" = base64encode(<<-EOF
@@ -77,11 +57,15 @@ resource "vsphere_virtual_machine" "web_paris" {
       users:
         - name: ubuntu
           sudo: ALL=(ALL) NOPASSWD:ALL
+          shell: /bin/bash
           ssh_authorized_keys:
-            - ${file("C:\\Users\\womos\\.ssh\\id_rsa.pub")}
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHUlZbld2mBBToa/1JU96nB+WLgCrch4FmV2/pcbUZHBt12v9OYIpf2vmEe5htcIOPk6e4/NJrI/D/BCuqnJavkX5f02ANppMWRWNMMJpEkn70VvVECS3ajDTskNTlpK1HEdNcrWnD6M44dhrG/vOuLuk/kg3pa1Mj0E5f2bBpL7SaNqrdYBkiLg+fCzKTU0vKal/lk0WbKPPpdf3Q8q/7EeOUUFE0/FBc4ZLKXcJfRsHcf9LbEYg2LIeeZ7LkZuSlSz1hTB6p2k34uomi7Ck1xoPq9A59JX+Ti50l+LLTmLJwFBrRX/pT9UgEBjexCBQyO5HoXV89dEz1i4+2NJLdNAn54qfexowUr97v7MfPOM5IGFC1FOaOK2Zasxyu0Lm3tuIqKwBfvvu56lCeiXOyZtEAKzO0Vm28dkUbghVuNJLdjWbi2fVpDzJpaRsSbRsDz5v/EbHgBXvPrAeQwCBbhIINnneLGEB1NU8e1sp5+e6CH26pM/f/eQGvWcsyVPDdETEYwGxulcLOpdYepGkMEQt7r2S58mA9bKHR1QZFIGBKhIukgBTLPEKpcIrsKir8zIInbid1bidfmnljK7nfWlv+JpyjlpOGm1mbpq4+h+b7Rs+M1j0lIduXDb+rt/NcALJq0ReVYEVRWkQLBH36rhwm9kiJ/5+Bc8oygkZP9Q== ntic-center-lab
       package_update: true
       packages:
         - open-vm-tools
+      runcmd:
+        - systemctl enable open-vm-tools
+        - systemctl start open-vm-tools
     EOF
     )
     "guestinfo.userdata.encoding" = "base64"
