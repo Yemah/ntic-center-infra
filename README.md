@@ -14,7 +14,8 @@ Infrastructure hybride multi-cloud complète déployée avec Terraform Cloud, in
 - **Ansible** — Post-configuration automatisée
 
 ## 🏛️ Architecture
-[Terraform Cloud]
+
+```[Terraform Cloud]
 │
 ├── [VMware vSphere — Paris]
 │     ├── Paris-DC / Paris-Cluster
@@ -29,9 +30,11 @@ Infrastructure hybride multi-cloud complète déployée avec Terraform Cloud, in
 └── [Azure francecentral — Supervision]
 ├── RG: RG-Monitoring
 └── VM: zabbix-monitor Standard_B1s
+```
 
 ## 📁 Structure du projet
-ntic-center-infra/
+
+```ntic-center-infra/
 ├── main.tf                    # Orchestration des modules
 ├── providers.tf               # Providers AWS, Azure, vSphere
 ├── variables.tf               # Variables globales
@@ -44,6 +47,7 @@ ntic-center-infra/
 └── ansible/
 ├── inventory.ini          # Inventaire dynamique
 └── site.yml               # Playbook Nginx
+```
 
 ## 🚀 Déploiement
 
