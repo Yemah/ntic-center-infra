@@ -1,6 +1,8 @@
-module "vm_paris" {
-  source = "./modules/vsphere-vm"
-}
+# Module VMware désactivé pour Terraform Cloud
+# (vCenter local non accessible depuis internet)
+# module "vm_paris" {
+#   source = "./modules/vsphere-vm"
+# }
 
 module "web_abidjan" {
   source      = "./modules/aws-ec2"

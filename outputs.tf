@@ -1,6 +1,6 @@
-output "ip_paris" {
-  value = module.vm_paris.ip
-}
+#output "ip_paris" {
+#  value = module.vm_paris.ip
+#}
 
 output "ip_abidjan" {
   value = module.web_abidjan.public_ip
