@@ -1,0 +1,35 @@
+---
+- name: Installation Nginx et supervision sur tous les serveurs
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Mettre à jour le cache apt
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Installer Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Créer page index personnalisée
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head><title>NTIC CENTER CORPORATION</title></head>
+          <body>
+            <h1>Site {{ inventory_hostname }}</h1>
+            <p>Infrastructure déployée par Terraform + Ansible</p>
+            <p>NTIC CENTER CORPORATION — Projet de Synthèse</p>
+          </body>
+          </html>
+
+    - name: S'assurer que Nginx est démarré
+      service:
+        name: nginx
+        state: started
+        enabled: yes
