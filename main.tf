@@ -9,7 +9,7 @@ module "web_abidjan" {
   db_password = var.db_password
 }
 
-module "monitoring" {
-  source         = "./modules/azure-monitoring"
-  azure_location = var.azure_location
-}
+#module "monitoring" {
+#  source         = "./modules/azure-monitoring"
+#  azure_location = var.azure_location
+#}
