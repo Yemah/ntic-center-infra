@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    vsphere = {
+      source  = "vmware/vsphere"
+      version = ">= 2.6.1"
+    }
+  }
+}
+
 data "vsphere_datacenter" "dc" {
   name = var.vsphere_datacenter
 }
@@ -40,6 +49,10 @@ resource "vsphere_virtual_machine" "web_paris" {
     label            = "disk0"
     size             = 20
     thin_provisioned = true
+  }
+
+  cdrom {
+    client_device = true
   }
 
   clone {
