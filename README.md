@@ -1,33 +1,14 @@
----
-
 <p align="center">
-  <svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
-    <!-- Fond -->
-    <rect width="280" height="100" rx="10" fill="#0d1117" stroke="#00d4ff" stroke-width="1.5"/>
-    
-    <!-- Icône Cloud Hybride (gauche) -->
-    <circle cx="35" cy="50" r="12" fill="none" stroke="#00d4ff" stroke-width="2"/>
-    <path d="M28 45 L35 38 L42 45" fill="none" stroke="#00d4ff" stroke-width="2"/>
-    <circle cx="35" cy="55" r="4" fill="#00d4ff"/>
-    
-    <!-- Séparateur vertical -->
-    <line x1="60" y1="25" x2="60" y2="75" stroke="#30363d" stroke-width="1"/>
-    
-    <!-- Texte principal -->
-    <text x="170" y="42" text-anchor="middle" fill="#00d4ff" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" letter-spacing="2">NTIC CENTER</text>
-    <text x="170" y="58" text-anchor="middle" fill="#e6edf3" font-family="'Segoe UI', Arial, sans-serif" font-size="11" letter-spacing="1">CORPORATION</text>
-    
-    <!-- Icône AWS (droite) -->
-    <path d="M245 42 L252 38 L259 42 L259 58 L252 62 L245 58 Z" fill="none" stroke="#ff9900" stroke-width="1.5"/>
-    <circle cx="252" cy="50" r="3" fill="#ff9900"/>
-    
-    <!-- Texte infra-hybride en bas -->
-    <text x="170" y="82" text-anchor="middle" fill="#8b949e" font-family="'Courier New', monospace" font-size="10">infra-hybride | Terraform · Ansible</text>
-    
-    <!-- Petits triangles décoratifs -->
-    <polygon points="15,15 25,15 20,22" fill="#00d4ff" opacity="0.3"/>
-    <polygon points="265,85 275,85 270,78" fill="#ff9900" opacity="0.3"/>
-  </svg>
+  <strong>
+    ███╗   ██╗████████╗██╗ ██████╗     ██████╗███████╗███╗   ██╗████████╗███████╗██████╗ 
+    ████╗  ██║╚══██╔══╝██║██╔════╝    ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
+    ██╔██╗ ██║   ██║   ██║██║         ██║     █████╗  ██╔██╗ ██║   ██║   █████╗  ██████╔╝
+    ██║╚██╗██║   ██║   ██║██║         ██║     ██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗
+    ██║ ╚████║   ██║   ██║╚██████╗    ╚██████╗███████╗██║ ╚████║   ██║   ███████╗██║  ██║
+    ╚═╝  ╚═══╝   ╚═╝   ╚═╝ ╚═════╝     ╚═════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+  </strong><br>
+  <strong>NTIC CENTER CORPORATION</strong><br>
+  <em>Infrastructure Hybride Multi-Cloud</em>
 </p>
 
 # 🌍 Infrastructure Hybride Multi-Cloud NTIC CENTER
