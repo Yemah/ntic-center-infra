@@ -1,16 +1,13 @@
 ---
 
 <p align="center">
-  <strong>
-    ███╗   ██╗████████╗██╗ ██████╗     ██████╗███████╗███╗   ██╗████████╗███████╗██████╗ 
-    ████╗  ██║╚══██╔══╝██║██╔════╝    ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
-    ██╔██╗ ██║   ██║   ██║██║         ██║     █████╗  ██╔██╗ ██║   ██║   █████╗  ██████╔╝
-    ██║╚██╗██║   ██║   ██║██║         ██║     ██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗
-    ██║ ╚████║   ██║   ██║╚██████╗    ╚██████╗███████╗██║ ╚████║   ██║   ███████╗██║  ██║
-    ╚═╝  ╚═══╝   ╚═╝   ╚═╝ ╚═════╝     ╚═════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
-  </strong><br>
-  <strong>NTIC CENTER CORPORATION</strong><br>
-  <em>Infrastructure Hybride Multi-Cloud</em>
+  <svg width="200" height="80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="80" rx="8" fill="#1a1a2e"/>
+    <text x="100" y="35" text-anchor="middle" fill="#00d4ff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">NTIC CENTER</text>
+    <text x="100" y="55" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="10">CORPORATION</text>
+    <line x1="30" y1="65" x2="170" y2="65" stroke="#00d4ff" stroke-width="1"/>
+    <text x="100" y="75" text-anchor="middle" fill="#888888" font-family="Arial, sans-serif" font-size="8">infra-hybride</text>
+  </svg>
 </p>
 
 # 🌍 Infrastructure Hybride Multi-Cloud NTIC CENTER
