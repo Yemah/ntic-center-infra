@@ -1,6 +1,5 @@
 ---
 
-```markdown
 <p align="center">
   <img src="https://raw.githubusercontent.com/ntic-center-corp/ntic-center-infra/main/docs/logo.png" alt="NTIC CENTER CORPORATION" width="200"/>
 </p>
