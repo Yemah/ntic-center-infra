@@ -1,3 +1,9 @@
+# Clé SSH pour l'accès Ansible
+resource "aws_key_pair" "deployer" {
+  key_name   = "ntic-center-deployer-key"
+  public_key = file("~/.ssh/id_rsa.pub") 
+}
+
 # VPC
 resource "aws_vpc" "vpc_abj" {
   cidr_block           = "10.0.0.0/16"
@@ -71,12 +77,13 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-# EC2 Web Abidjan (t2.micro = Free Tier)
+# EC2 Web Abidjan
 resource "aws_instance" "web_abj" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public_a.id
   vpc_security_group_ids = [aws_security_group.web.id]
+  key_name               = aws_key_pair.deployer.key_name # <-- LIGNE À AJOUTER
   tags = { Name = "web-abidjan" }
 }
 

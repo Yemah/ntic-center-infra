@@ -19,12 +19,22 @@
         dest: /var/www/html/index.html
         content: |
           <!DOCTYPE html>
-          <html>
-          <head><title>NTIC CENTER CORPORATION</title></head>
+          <html lang="fr">
+          <head>
+            <meta charset="utf-8">
+            <title>NTIC CENTER CORPORATION</title>
+            <style>
+              body { font-family: sans-serif; line-height: 1.6; padding: 20px; color: #333; }
+              h1 { color: #2c3e50; }
+              .container { max-width: 800px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+            </style>
+          </head>
           <body>
-            <h1>Site {{ inventory_hostname }}</h1>
-            <p>Infrastructure déployée par Terraform + Ansible</p>
-            <p>NTIC CENTER CORPORATION — Projet de Synthèse</p>
+            <div class="container">
+              <h1>Site {{ inventory_hostname }}</h1>
+              <p>Infrastructure déployée par Terraform + Ansible</p>
+              <p><strong>NTIC CENTER CORPORATION</strong> — Projet de Synthèse</p>
+            </div>
           </body>
           </html>
 

@@ -1,8 +1,8 @@
-#terraform {
-#  cloud {
-#    organization = "ntic-center-corp"
-#    workspaces {
-#      name = "infra-hybride"
-#    }
-#  }
-#}
+terraform {
+  cloud {
+    organization = "ntic-center-corp"
+    workspaces {
+      name = "infra-hybride"
+    }
+  }
+}
