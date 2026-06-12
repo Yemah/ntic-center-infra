@@ -9,3 +9,7 @@ output "ip_abidjan" {
 output "ip_zabbix" {
   value = module.monitoring.ip
 }
+
+output "rds_endpoint" {
+  value = module.web_abidjan.rds_endpoint
+}
