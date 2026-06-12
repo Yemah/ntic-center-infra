@@ -267,8 +267,8 @@ Le playbook :
 
 ## 👤 Auteur & Licence
 
-**Mainteneur** : Yemah, Mastère Expert ERIS — NTIC CENTER CORPORATION (fictif)  
-**Contact professionnel (simulé)** : `yemah@ntic-center-corp.ci`
+**Mainteneur** : Steeve WOMO, Ingénieur Expert ERIS — NTIC CENTER CORPORATION (fictif)  
+**Contact professionnel** : `womo.steeven@gmail.com`
 
 **Licence** : Ce projet est fourni à des fins pédagogiques et de démonstration technique. Toute utilisation commerciale est soumise à autorisation préalable.
 
@@ -277,4 +277,4 @@ Le playbook :
 <p align="center">
   <i>« L'infrastructure comme code n'est pas une option — c'est la nouvelle norme de résilience et de gouvernance. »</i>
 </p>
-```
+
