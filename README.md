@@ -38,53 +38,53 @@ Ce dépôt constitue l'**œuvre maîtresse d'ingénierie** d'un Mastère Expert 
 ---
 
 > ## 🏛️ Architecture Technique
-```mermaid``
+```mermaid
 graph TD
     subgraph "🏢 Siège Social — Paris (On-Premise)"
         subgraph "vCenter Server (vcenter.ntic-paris.local)"
             subgraph "Datacenter: Paris-DC"
                 subgraph "Cluster: Paris-Cluster"
-                    VM_Paris["VM web-paris<br/>Ubuntu 22.04<br/>1 vCPU / 1 Go RAM<br/>IP: 192.168.1.17"]
+                    VM_Paris[("VM web-paris<br/>Ubuntu 22.04<br/>1 vCPU / 1 Go RAM<br/>IP: 192.168.1.17")]
                 end
-                Datastore["Datastore<br/>(Stockage VM)"]
-                Template["Template: ubuntu-template<br/>(cloud-init ready)"]
+                Datastore[("Datastore<br/>(Stockage VM)")]
+                Template[("Template: ubuntu-template<br/>(cloud-init ready)")]
             end
-            Network["Réseau: VM Network<br/>(Port Group)"]
+            Network[("Réseau: VM Network<br/>(Port Group)")]
         end
     end
 
     subgraph "☁️ Agence — Abidjan (AWS eu-west-1)"
-        VPC["VPC vpc-abidjan<br/>10.0.0.0/16"]
-        IGW["Internet Gateway igw-abidjan"]
-        RouteTable["Route Table rt-public-abj<br/>(0.0.0.0/0 → IGW)"]
-        SubnetA["Subnet public_a<br/>10.0.1.0/24 (AZ a)"]
-        SubnetB["Subnet public_b<br/>10.0.2.0/24 (AZ b)"]
-        SG["Security Group web-abidjan-sg<br/>(règles: 22, 80 entrant)"]
-        EC2["EC2 web-abidjan<br/>t3.micro, Ubuntu 22.04<br/>IP publique: 3.252.52.40<br/>(Nginx)"]
-        RDS["RDS db-abidjan<br/>MySQL 8.0, db.t3.micro<br/>Base: nticdb"]
-        DBSubnetGroup["DB Subnet Group<br/>(subnet_a + subnet_b)"]
+        VPC[("VPC vpc-abidjan<br/>10.0.0.0/16")]
+        IGW[("Internet Gateway igw-abidjan")]
+        RouteTable[("Route Table rt-public-abj<br/>(0.0.0.0/0 → IGW)")]
+        SubnetA[("Subnet public_a<br/>10.0.1.0/24 (AZ a)")]
+        SubnetB[("Subnet public_b<br/>10.0.2.0/24 (AZ b)")]
+        SG[("Security Group web-abidjan-sg<br/>(règles: 22, 80 entrant)")]
+        EC2[("EC2 web-abidjan<br/>t3.micro, Ubuntu 22.04<br/>IP publique: 3.252.52.40<br/>(Nginx)")]
+        RDS[("RDS db-abidjan<br/>MySQL 8.0, db.t3.micro<br/>Base: nticdb")]
+        DBSubnetGroup[("DB Subnet Group<br/>(subnet_a + subnet_b)")]
     end
 
     subgraph "📊 Supervision Globale — Azure (Sweden Central)"
-        RG["Resource Group RG-Monitoring"]
-        VNet["VNet vnet-monitoring<br/>10.1.0.0/16"]
-        SubnetMon["Subnet subnet-monitoring<br/>10.1.1.0/24"]
-        NSG["NSG nsg-monitoring<br/>(règle: 22 entrant)"]
-        PIP["Public IP pip-zabbix<br/>(IP: 4.223.71.179)"]
-        NIC["NIC nic-zabbix"]
-        VM_Azure["VM zabbix-monitor<br/>Standard_D2s_v3, Ubuntu 22.04<br/>(Zabbix Server)"]
+        RG[("Resource Group RG-Monitoring")]
+        VNet[("VNet vnet-monitoring<br/>10.1.0.0/16")]
+        SubnetMon[("Subnet subnet-monitoring<br/>10.1.1.0/24")]
+        NSG[("NSG nsg-monitoring<br/>(règle: 22 entrant)")]
+        PIP[("Public IP pip-zabbix<br/>(IP: 4.223.71.179)")]
+        NIC[("NIC nic-zabbix")]
+        VM_Azure[("VM zabbix-monitor<br/>Standard_D2s_v3, Ubuntu 22.04<br/>(Zabbix Server)")]
     end
 
     subgraph "💻 Poste Opérateur (DevOps)"
-        PC["Poste Windows/Linux<br/>Terraform / Ansible CLI"]
-        KeyPair["Paire de clés SSH<br/>~/.ssh/id_rsa"]
-        Git["Dépôt Git<br/>(ntic-center-infra)"]
+        PC[("Poste Windows/Linux<br/>Terraform / Ansible CLI")]
+        KeyPair[("Paire de clés SSH<br/>~/.ssh/id_rsa")]
+        Git[("Dépôt Git<br/>(ntic-center-infra)")]
     end
 
     subgraph "☁️ Orchestration & État"
-        TFC["Terraform Cloud<br/>Organisation: ntic-center-corp<br/>Workspace: infra-hybride"]
-        State_AWS_Azure["État centralisé<br/>(AWS + Azure)"]
-        State_vSphere["État local<br/>(vSphere — non versionné)"]
+        TFC[("Terraform Cloud<br/>Organisation: ntic-center-corp<br/>Workspace: infra-hybride")]
+        State_AWS_Azure[("État centralisé<br/>(AWS + Azure)")]
+        State_vSphere[("État local<br/>(vSphere — non versionné)")]
     end
 
     %% Flux Réseau
@@ -139,6 +139,58 @@ graph TD
     class PC,KeyPair,Git operator;
     class TFC,State_AWS_Azure,State_vSphere state;
 
+    %% Flux Réseau
+    PC -- "Terraform apply (cible AWS/Azure)" --> TFC
+    TFC -- "Plan/Apply via API" --> VPC
+    TFC -- "Plan/Apply via API" --> RG
+
+    PC -- "Terraform apply (local, réseau interne)" --> VM_Paris
+    PC -- "Ansible playbook" --> VM_Paris
+    PC -- "Ansible playbook (via SSH)" --> EC2
+    PC -- "Ansible playbook (via SSH, tunnel)" --> VM_Azure
+
+    EC2 -- "HTTP (port 80)" --> Internet
+    VM_Paris -- "HTTP (port 80)" --> PC
+
+    %% Flux Dépendances Internes AWS
+    IGW --- VPC
+    RouteTable --- VPC
+    SubnetA --- VPC
+    SubnetB --- VPC
+    SubnetA --- RouteTable
+    SubnetB --- RouteTable
+    EC2 --- SubnetA
+    EC2 --- SG
+    RDS --- DBSubnetGroup
+    DBSubnetGroup --- SubnetA
+    DBSubnetGroup --- SubnetB
+    RDS --- SG
+
+    %% Flux Dépendances Internes Azure
+    VNet --- RG
+    SubnetMon --- VNet
+    NSG --- SubnetMon
+    NIC --- SubnetMon
+    NIC --- NSG
+    VM_Azure --- NIC
+    PIP --- NIC
+
+    %% Intégration Git
+    Git --- PC
+    TFC --- Git
+
+    %% Légende visuelle des flux
+    classDef cloud fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef onprem fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef operator fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
+    classDef state fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
+
+    class VPC,IGW,RouteTable,SubnetA,SubnetB,SG,EC2,RDS,DBSubnetGroup cloud;
+    class RG,VNet,SubnetMon,NSG,PIP,NIC,VM_Azure cloud;
+    class VM_Paris,Datastore,Template,Network onprem;
+    class PC,KeyPair,Git operator;
+    class TFC,State_AWS_Azure,State_vSphere state;
+```
 ### Tableau de synthèse des environnements
 
 | Composant | 📍 Paris (On-Premise) | ☁️ Abidjan (AWS) | 📊 Supervision (Azure) |
