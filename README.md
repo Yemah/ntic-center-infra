@@ -39,52 +39,52 @@ Ce dépôt constitue l'**œuvre maîtresse d'ingénierie** d'un Mastère Expert 
 
 ## 🏛️ Architecture Technique
 
-> graph TD
+graph TD
     subgraph "🏢 Siège Social — Paris (On-Premise)"
         subgraph "vCenter Server (vcenter.ntic-paris.local)"
             subgraph "Datacenter: Paris-DC"
                 subgraph "Cluster: Paris-Cluster"
-                    VM_Paris[("VM web-paris<br/>Ubuntu 22.04<br/>1 vCPU / 1 Go RAM<br/>IP: 192.168.1.17")]
+                    VM_Paris["VM web-paris<br/>Ubuntu 22.04<br/>1 vCPU / 1 Go RAM<br/>IP: 192.168.1.17"]
                 end
-                Datastore[("Datastore<br/>(Stockage VM)")]
-                Template[("Template: ubuntu-template<br/>(cloud-init ready)")]
+                Datastore["Datastore<br/>(Stockage VM)"]
+                Template["Template: ubuntu-template<br/>(cloud-init ready)"]
             end
-            Network[("Réseau: VM Network<br/>(Port Group)")]
+            Network["Réseau: VM Network<br/>(Port Group)"]
         end
     end
 
     subgraph "☁️ Agence — Abidjan (AWS eu-west-1)"
-        VPC[("VPC vpc-abidjan<br/>10.0.0.0/16")]
-        IGW[("Internet Gateway igw-abidjan")]
-        RouteTable[("Route Table rt-public-abj<br/>(0.0.0.0/0 → IGW)")]
-        SubnetA[("Subnet public_a<br/>10.0.1.0/24 (AZ a)")]
-        SubnetB[("Subnet public_b<br/>10.0.2.0/24 (AZ b)")]
-        SG[("Security Group web-abidjan-sg<br/>(règles: 22, 80 entrant)")]
-        EC2[("EC2 web-abidjan<br/>t3.micro, Ubuntu 22.04<br/>IP publique: 3.252.52.40<br/>(Nginx)")]
-        RDS[("RDS db-abidjan<br/>MySQL 8.0, db.t3.micro<br/>Base: nticdb")]
-        DBSubnetGroup[("DB Subnet Group<br/>(subnet_a + subnet_b)")]
+        VPC["VPC vpc-abidjan<br/>10.0.0.0/16"]
+        IGW["Internet Gateway igw-abidjan"]
+        RouteTable["Route Table rt-public-abj<br/>(0.0.0.0/0 → IGW)"]
+        SubnetA["Subnet public_a<br/>10.0.1.0/24 (AZ a)"]
+        SubnetB["Subnet public_b<br/>10.0.2.0/24 (AZ b)"]
+        SG["Security Group web-abidjan-sg<br/>(règles: 22, 80 entrant)"]
+        EC2["EC2 web-abidjan<br/>t3.micro, Ubuntu 22.04<br/>IP publique: 3.252.52.40<br/>(Nginx)"]
+        RDS["RDS db-abidjan<br/>MySQL 8.0, db.t3.micro<br/>Base: nticdb"]
+        DBSubnetGroup["DB Subnet Group<br/>(subnet_a + subnet_b)"]
     end
 
     subgraph "📊 Supervision Globale — Azure (Sweden Central)"
-        RG[("Resource Group RG-Monitoring")]
-        VNet[("VNet vnet-monitoring<br/>10.1.0.0/16")]
-        SubnetMon[("Subnet subnet-monitoring<br/>10.1.1.0/24")]
-        NSG[("NSG nsg-monitoring<br/>(règle: 22 entrant)")]
-        PIP[("Public IP pip-zabbix<br/>(IP: 4.223.71.179)")]
-        NIC[("NIC nic-zabbix")]
-        VM_Azure[("VM zabbix-monitor<br/>Standard_D2s_v3, Ubuntu 22.04<br/>(Zabbix Server)")]
+        RG["Resource Group RG-Monitoring"]
+        VNet["VNet vnet-monitoring<br/>10.1.0.0/16"]
+        SubnetMon["Subnet subnet-monitoring<br/>10.1.1.0/24"]
+        NSG["NSG nsg-monitoring<br/>(règle: 22 entrant)"]
+        PIP["Public IP pip-zabbix<br/>(IP: 4.223.71.179)"]
+        NIC["NIC nic-zabbix"]
+        VM_Azure["VM zabbix-monitor<br/>Standard_D2s_v3, Ubuntu 22.04<br/>(Zabbix Server)"]
     end
 
     subgraph "💻 Poste Opérateur (DevOps)"
-        PC[("Poste Windows/Linux<br/>Terraform / Ansible CLI")]
-        KeyPair[("Paire de clés SSH<br/>~/.ssh/id_rsa")]
-        Git[("Dépôt Git<br/>(ntic-center-infra)")]
+        PC["Poste Windows/Linux<br/>Terraform / Ansible CLI"]
+        KeyPair["Paire de clés SSH<br/>~/.ssh/id_rsa"]
+        Git["Dépôt Git<br/>(ntic-center-infra)"]
     end
 
     subgraph "☁️ Orchestration & État"
-        TFC[("Terraform Cloud<br/>Organisation: ntic-center-corp<br/>Workspace: infra-hybride")]
-        State_AWS_Azure[("État centralisé<br/>(AWS + Azure)")]
-        State_vSphere[("État local<br/>(vSphere — non versionné)")]
+        TFC["Terraform Cloud<br/>Organisation: ntic-center-corp<br/>Workspace: infra-hybride"]
+        State_AWS_Azure["État centralisé<br/>(AWS + Azure)"]
+        State_vSphere["État local<br/>(vSphere — non versionné)"]
     end
 
     %% Flux Réseau
