@@ -191,6 +191,7 @@ graph TD
     class PC,KeyPair,Git operator;
     class TFC,State_AWS_Azure,State_vSphere state;
 ```
+---
 
 >**Architecture simplifier**
 ```mermaid
