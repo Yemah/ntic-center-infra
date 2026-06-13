@@ -241,6 +241,11 @@ graph TD
 
 ---
 
+Le provisioning est assuré par Terraform (modules dédiés par provider), et la configuration applicative (Nginx) par Ansible, appliquée de manière homogène sur les trois environnements.
+
+Le document d'architecture complet (DAT) décrivant les choix de conception, les matrices de flux, la sécurité et les incidents rencontrés est disponible ici ➡️ ![DAT NTIC CENTER](docs/DAT_NTIC_CENTER_CORPORATION.md).
+
+
 ## 📁 Arborescence du dépôt
 
 ```
@@ -396,7 +401,10 @@ cd ../..
 > L'état de `web-paris` est stocké localement. Cette VM n'est **pas** supervisée par Terraform Cloud.
 
 ### 6. Mettre à jour l'inventaire Ansible
-
+```bash
+terraform output ip_abidjan
+terraform output ip_zabbix
+```
 Copiez les IP récupérées dans `ansible/inventory.ini` :
 
 ```ini
@@ -439,12 +447,12 @@ Le playbook :
 
 | Test | Commande / Action | Résultat attendu | Preuve |
 |---|---|---|---|
-| Connexion SSH Ansible | `ansible all -i inventory.ini -m ping` | `pong` sur les 3 hôtes | ![ping Ansible multi-cloud](docs/architecture.png) |
-| Playbook Ansible | `ansible-playbook -i inventory.ini site.yml` | `failed=0` | `[Insérer la capture d'écran : sortie playbook]` |
-| Page Nginx Abidjan | Navigateur → `http://3.252.52.40` | Page "Site web-abidjan" | `[Insérer la capture d'écran : Déploiement de la page web Nginx d'Abidjan]` |
-| Page Nginx Paris | Navigateur (réseau interne) → `http://192.168.1.17` | Page "Site web-paris" | `[Insérer la capture d'écran : Déploiement de la page web Nginx Paris]` |
-| Accès RDS | `mysql -h <RDS endpoint> -u admin -p nticdb` | Connexion établie | `[Insérer la capture d'écran : Dashboard de l'infrastructure sur AWS (EC2 + RDS)]` |
-| Idempotence Terraform | `terraform plan -var-file=terraform.tfvars` | "No changes" | `[Insérer la capture d'écran : terraform plan idempotent]` |
+| Connexion SSH Ansible | `ansible all -i inventory.ini -m ping` | `pong` sur les 3 hôtes | ![ping Ansible multi-cloud](docs/screenshots/ping_ansible_multiCloud.png) |
+| Playbook Ansible | `ansible-playbook -i inventory.ini site.yml` | `failed=0` | ![Sortie Playbook_Ansible](docs/screenshots/sortie_palybook-ansible.png) |
+| Page Nginx Abidjan | Navigateur → `http://3.252.52.40` | Page "Site web-abidjan" | ![Page NGINX Web Abijan](docs/screenshots/nginx_web_abijan.png) |
+| Page Nginx Paris | Navigateur (réseau interne) → `http://192.168.1.17` | Page "Site web-paris" | ![Page NGIX Web Paris](docs/screenshots/nginx_web_paris.png) |
+| Accès RDS | `mysql -h db-abidjan.cb8qgwkyt79.eu-west-1.rds.amazonaws.com -u admin -p nticdb` | Connexion établie | ![Dashboard RDS](docs/aws_rds_endpoint.png) |
+
 
 ---
 
