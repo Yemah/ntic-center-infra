@@ -38,6 +38,7 @@ Ce dépôt constitue l'**œuvre maîtresse d'ingénierie** d'un Mastère Expert 
 ---
 
 > ## 🏛️ Architecture Technique
+
 ```mermaid
 graph TD
     subgraph "🏢 Siège Social — Paris (On-Premise)"
@@ -189,8 +190,7 @@ graph TD
     class RG,VNet,SubnetMon,NSG,PIP,NIC,VM_Azure cloud;
     class VM_Paris,Datastore,Template,Network onprem;
     class PC,KeyPair,Git operator;
-    class TFC,State_AWS_Azure,State_vSphere state;
-```
+    class TFC,State_AWS_Azure,State_vSphere state;```
 ---
 
 >**Architecture simplifier**
