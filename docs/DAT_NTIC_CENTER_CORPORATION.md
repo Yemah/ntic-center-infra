@@ -116,7 +116,7 @@ Ce DAT documente l'architecture **telle qu'effectivement implémentée** au term
                           └───────────────────────────────┘
 ```
 
-![OVERVIEW TERRAFORM WORKSPACE](docs/screenshots/terraform_overview_workspace.png)
+![OVERVIEW TERRAFORM WORKSPACE](../docs/screenshots/terraform_overview_workspace.png)
 
 ### 2.2 Principes directeurs
 
@@ -217,7 +217,7 @@ La solution retenue — et c'est un choix d'architecture **hybride d'état** ass
 
 Cette stratégie correspond au pattern dit de **« split-state architecture »** : un état par périmètre de connectivité réseau, chacun piloté par l'outillage le mieux placé pour y accéder. C'est une réponse réaliste à une contrainte de topologie réseau, et non une faille de conception — un point qui sera retenu comme un acquis méthodologique majeur du projet de synthèse.
 
-![VM web-paris vCenter](docs/screenshots/vCenter_webparis.png)
+![VM web-paris vCenter](../docs/screenshots/vCenter_webparis.png)
 
 ### 3.5 « Cattle vs Pets » — infrastructure immuable
 
@@ -296,9 +296,9 @@ extra_config = {
 
 L'attribut `cdrom { client_device = true }` est conservé pour compatibilité avec le template (lecteur virtuel sans média monté), sans impact fonctionnel.
 
-![web-paris installation](docs/screenshots/installation_webparis.png)
+![web-paris installation](../docs/screenshots/installation_webparis.png)
 
-![vSphere result Terraform Apply](docs/screenshots/ApplyTerraformvSphere.png)
+![vSphere result Terraform Apply](../docs/screenshots/ApplyTerraformvSphere.png)
 
 ---
 
