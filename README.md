@@ -194,36 +194,6 @@ graph TD
 ```
 ---
 
->**Architecture simplifier**
-
-```mermaid
-graph TD
-    Paris["🏢 Paris (On-Premise)<br/>VM web-paris<br/>1 vCPU / 1 Go RAM<br/>IP: 192.168.1.17"]
-    AWS["☁️ Abidjan (AWS eu-west-1)<br/>EC2 web-abidjan t3.micro<br/>IP: 3.252.52.40 (Nginx)<br/>RDS MySQL db.t3.micro"]
-    Azure["📊 Supervision (Azure swedencentral)<br/>VM zabbix-monitor Standard_D2s_v3<br/>IP: 4.223.71.179 (Zabbix)"]
-    TFC["Terraform Cloud<br/>État centralisé (AWS+Azure)"]
-    Local["État local (vSphere)"]
-    Ansible["Ansible<br/>Playbook Nginx"]
-    SSH["SSH (même clé partout)"]
-
-    TFC --> AWS
-    TFC --> Azure
-    Local --> Paris
-    Ansible --> SSH
-    SSH --> Paris
-    SSH --> AWS
-    SSH --> Azure
-
-    classDef aws fill:#ff9900,stroke:#232f3e,color:white;
-    classDef azure fill:#0078d4,stroke:#00188f,color:white;
-    classDef onprem fill:#607078,stroke:#39424a,color:white;
-    classDef tool fill:#844fba,stroke:#4a148c,color:white;
-
-    class AWS aws;
-    class Azure azure;
-    class Paris onprem;
-    class TFC,Local,Ansible,SSH tool;
-```
 
 ### Tableau de synthèse des environnements
 
