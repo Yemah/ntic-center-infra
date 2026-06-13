@@ -449,10 +449,53 @@ Le playbook :
 |---|---|---|---|
 | Connexion SSH Ansible | `ansible all -i inventory.ini -m ping` | `pong` sur les 3 hôtes | ![ping Ansible multi-cloud](docs/screenshots/ping_ansible_multiCloud.png) |
 | Playbook Ansible | `ansible-playbook -i inventory.ini site.yml` | `failed=0` | ![Sortie Playbook_Ansible](docs/screenshots/sortie_palybook-ansible.png) |
-| Page Nginx Abidjan | Navigateur → `http://3.252.52.40` | Page "Site web-abidjan" | ![Page NGINX Web Abijan](docs/screenshots/nginx_web_abijan.png) |
-| Page Nginx Paris | Navigateur (réseau interne) → `http://192.168.1.17` | Page "Site web-paris" | ![Page NGIX Web Paris](docs/screenshots/nginx_web_paris.png) |
 | Accès RDS | `mysql -h db-abidjan.cb8qgwkyt79.eu-west-1.rds.amazonaws.com -u admin -p nticdb` | Connexion établie | ![Dashboard RDS](docs/screenshots/aws_rds_endpoint.png) |
 
+
+---
+## 📸 Galerie des preuves de déploiement
+
+### 🌐 Infrastructure AWS
+
+| Composant | Capture |
+|-----------|---------|
+| VPC Abidjan | ![VPC AWS](docs/screenshots/VPC_AWS.png) |
+| Base de données RDS | ![RDS AWS](docs/screenshots/RDS-DB_AWS.png) |
+
+### 🏢 Infrastructure On-Premise (vSphere)
+
+| Composant | Capture |
+|-----------|---------|
+| VM web-paris (vCenter) | ![VM web-paris vCenter](docs/screenshots/vCenter_webparis.png) |
+| Installation web-paris | ![Installation web-paris](docs/screenshots/installation_webparis.png) |
+
+### ☁️ Infrastructure Azure
+
+| Composant | Capture |
+|-----------|---------|
+| Resource Group RG-Monitoring | ![Azure RG](docs/screenshots/azure-rg-overview.png) |
+
+### 🔧 Déploiement Terraform
+
+| Étape | Capture |
+|-------|---------|
+| Plan Terraform (initial) | ![Terraform Plan](docs/screenshots/PlanTerra_Start.png) |
+| Apply Terraform vSphere | ![Terraform Apply vSphere](docs/screenshots/Apply Terraform vSphere.png) |
+| Apply Terraform complet | ![Terraform Apply complet](docs/screenshots/Apply Terraform complet.png) |
+
+### ⚙️ Configuration Ansible
+
+| Étape | Capture |
+|-------|---------|
+| Ping Ansible multi-cloud | ![Ansible Ping](docs/screenshots/ping_ansible_multiCloud.png) |
+| Exécution playbook | ![Ansible Playbook](docs/screenshots/sortie_palybook-ansible.png) |
+
+### ✅ Validation applicative
+
+| Site | URL / IP | Résultat attendu | Capture |
+|------|----------|------------------|---------|
+| Page Nginx Abidjan | Navigateur → `http://3.252.52.40` | Page "Site web-abidjan" | ![Page NGINX Web Abijan](docs/screenshots/nginx_web_abijan.png) |
+| Page Nginx Paris | Navigateur (réseau interne) → `http://192.168.1.17` | Page "Site web-paris" | ![Page NGIX Web Paris](docs/screenshots/nginx_web_paris.png) |
 
 ---
 
