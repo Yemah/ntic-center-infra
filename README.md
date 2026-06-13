@@ -451,7 +451,7 @@ Le playbook :
 | Playbook Ansible | `ansible-playbook -i inventory.ini site.yml` | `failed=0` | ![Sortie Playbook_Ansible](docs/screenshots/sortie_palybook-ansible.png) |
 | Page Nginx Abidjan | Navigateur → `http://3.252.52.40` | Page "Site web-abidjan" | ![Page NGINX Web Abijan](docs/screenshots/nginx_web_abijan.png) |
 | Page Nginx Paris | Navigateur (réseau interne) → `http://192.168.1.17` | Page "Site web-paris" | ![Page NGIX Web Paris](docs/screenshots/nginx_web_paris.png) |
-| Accès RDS | `mysql -h db-abidjan.cb8qgwkyt79.eu-west-1.rds.amazonaws.com -u admin -p nticdb` | Connexion établie | ![Dashboard RDS](docs/aws_rds_endpoint.png) |
+| Accès RDS | `mysql -h db-abidjan.cb8qgwkyt79.eu-west-1.rds.amazonaws.com -u admin -p nticdb` | Connexion établie | ![Dashboard RDS](docs/screenshots/aws_rds_endpoint.png) |
 
 
 ---
