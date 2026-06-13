@@ -190,10 +190,12 @@ graph TD
     class RG,VNet,SubnetMon,NSG,PIP,NIC,VM_Azure cloud;
     class VM_Paris,Datastore,Template,Network onprem;
     class PC,KeyPair,Git operator;
-    class TFC,State_AWS_Azure,State_vSphere state;```
+    class TFC,State_AWS_Azure,State_vSphere state;
+```
 ---
 
 >**Architecture simplifier**
+
 ```mermaid
 graph TD
     Paris["🏢 Paris (On-Premise)<br/>VM web-paris<br/>1 vCPU / 1 Go RAM<br/>IP: 192.168.1.17"]
