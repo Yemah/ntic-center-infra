@@ -480,8 +480,8 @@ Le playbook :
 | Étape | Capture |
 |-------|---------|
 | Plan Terraform (initial) | ![Terraform Plan](docs/screenshots/PlanTerra_Start.png) |
-| Apply Terraform vSphere | ![Terraform Apply vSphere](docs/screenshots/Apply Terraform vSphere.png) |
-| Apply Terraform complet | ![Terraform Apply complet](docs/screenshots/Apply Terraform complet.png) |
+| Apply Terraform vSphere | ![Terraform Apply vSphere](docs/screenshots/ApplyTerraformvSphere.png) |
+| Apply Terraform complet | ![Terraform Apply complet](docs/screenshots/ApplyTerraformcomplet.png) |
 
 ### ⚙️ Configuration Ansible
 
