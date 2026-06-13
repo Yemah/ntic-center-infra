@@ -116,7 +116,7 @@ Ce DAT documente l'architecture **telle qu'effectivement implémentée** au term
                           └───────────────────────────────┘
 ```
 
-[INSÉRER CAPTURE D'ÉCRAN : Vue d'ensemble du workspace Terraform Cloud "infra-hybride" montrant les trois providers configurés]
+![OVERVIEW TERRAFORM WORKSPACE](docs/screenshots/terraform_overview_workspace.png)
 
 ### 2.2 Principes directeurs
 
@@ -217,7 +217,7 @@ La solution retenue — et c'est un choix d'architecture **hybride d'état** ass
 
 Cette stratégie correspond au pattern dit de **« split-state architecture »** : un état par périmètre de connectivité réseau, chacun piloté par l'outillage le mieux placé pour y accéder. C'est une réponse réaliste à une contrainte de topologie réseau, et non une faille de conception — un point qui sera retenu comme un acquis méthodologique majeur du projet de synthèse.
 
-[INSÉRER CAPTURE D'ÉCRAN : Console vCenter Paris-DC / Paris-Cluster montrant la VM web-paris à l'état "Powered On"]
+![VM web-paris vCenter](docs/screenshots/vCenter_webparis.png)
 
 ### 3.5 « Cattle vs Pets » — infrastructure immuable
 
@@ -296,9 +296,9 @@ extra_config = {
 
 L'attribut `cdrom { client_device = true }` est conservé pour compatibilité avec le template (lecteur virtuel sans média monté), sans impact fonctionnel.
 
-[INSÉRER CAPTURE D'ÉCRAN : Onglet "Summary" de la VM web-paris dans vCenter, affichant l'adresse IP 192.168.1.17 et l'état VMware Tools "Running"]
+![web-paris installation](docs/screenshots/installation_webparis.png)
 
-[INSÉRER CAPTURE D'ÉCRAN : Résultat de `terraform apply` du module vsphere-vm en local, montrant la création de la ressource `vsphere_virtual_machine.web_paris`]
+![vSphere result Terraform Apply](docs/screenshots/ApplyTerraformvSphere.png)
 
 ---
 
