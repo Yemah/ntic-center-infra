@@ -215,7 +215,7 @@ graph TD
 
 Le provisioning est assuré par Terraform (modules dédiés par provider), et la configuration applicative (Nginx) par Ansible, appliquée de manière homogène sur les trois environnements.
 
-Le document d'architecture complet (DAT) décrivant les choix de conception, les matrices de flux, la sécurité et les incidents rencontrés est disponible ici ➡️   ![DAT NTIC CENTER](docs/DAT_NTIC_CENTER_CORPORATION.md).
+Le document d'architecture complet (DAT) décrivant les choix de conception, les matrices de flux, la sécurité et les incidents rencontrés est disponible ici ➡️                                                                                 ![DAT NTIC CENTER](docs/DAT_NTIC_CENTER_CORPORATION.md).
 
 
 ## 📁 Arborescence du dépôt
